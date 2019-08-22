@@ -15,14 +15,22 @@ namespace ToDoList
         {
             if (!IsPostBack)
             {
+                PopulateCategories();
                 PopulateList();
             }
+        }
+
+        private void PopulateCategories()
+        {
+            List<string> categories = ToDoItemData.GetCategories();
+
+            Category.DataSource = categories;
+            Category.DataBind();
         }
 
         private void PopulateList()
         {
             List<ToDoItem> todos = ToDoItemData.GetToDoItems();
-            Debug.WriteLine(todos);
 
             TODOs.DataSource = todos;
             TODOs.DataBind();
@@ -34,7 +42,7 @@ namespace ToDoList
             {
                 ErrorMessage.Visible = false;
 
-                ToDoItemData.AddItem(Description.Text);
+                ToDoItemData.AddItem(Description.Text, Category.SelectedValue);
                 PopulateList();
                 Description.Text = string.Empty;
             }

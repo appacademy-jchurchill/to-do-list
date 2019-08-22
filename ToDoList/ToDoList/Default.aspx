@@ -17,6 +17,7 @@
                 <table>
                     <tr>
                         <th>Description</th>
+                        <th>Category</th>
                         <th>&nbsp;</th>
                     </tr>
             </headertemplate>
@@ -25,6 +26,11 @@
                     <td>
                         <asp:label id="Description" runat="server" 
                             text='<%# Eval("Description") %>'
+                            font-strikeout='<%# Eval("Done") %>' />
+                    </td>
+                    <td>
+                        <asp:label id="Category" runat="server" 
+                            text='<%# Eval("Category") %>'
                             font-strikeout='<%# Eval("Done") %>' />
                     </td>
                     <td>
@@ -42,8 +48,19 @@
 
         <h2>Add New TODO</h2>
 
-        <asp:textbox id="Description" runat="server" />
-        <asp:button id="Submit" runat="server" text="Submit" onclick="Submit_Click" />
+        <div>
+            <asp:label id="DescriptionLabel" runat="server" associatedcontrolid="Description">Description:</asp:label>
+            <asp:textbox id="Description" runat="server" />
+        </div>
+
+        <div>
+            <asp:label id="CategoryLabel" runat="server" associatedcontrolid="Category">Category:</asp:label>
+            <asp:dropdownlist id="Category" runat="server" />
+        </div>
+
+        <div>
+            <asp:button id="Submit" runat="server" text="Submit" onclick="Submit_Click" />
+        </div>
 
         <div>
             <asp:label id="ErrorMessage" runat="server" text="Please provide a description." forecolor="Red" visible="false" />
