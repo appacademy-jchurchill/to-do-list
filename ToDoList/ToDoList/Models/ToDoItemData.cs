@@ -31,6 +31,7 @@ namespace ToDoList.Models
                 Categories.Add("Personal");
                 Categories.Add("Work");
                 Categories.Add("Chores");
+                Categories.Add("Misc");
             }
 
             return Categories;
